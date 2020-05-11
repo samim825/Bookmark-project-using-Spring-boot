@@ -35,6 +35,11 @@
 </head>
 <body class="background">
   <jsp:include page="header.jsp"/>
+
+  <h6 class="profile-font">${user.getId()}</h6>
+  <h6 class="profile-font">${user.getName()}</h6>
+  <h6 class="profile-font">${email}</h6>
+  <h6 class="profile-font">${mobile}</h6>
 <div class="container">
   <% for(int i=1;i<=20;i++){ %>
   <br>

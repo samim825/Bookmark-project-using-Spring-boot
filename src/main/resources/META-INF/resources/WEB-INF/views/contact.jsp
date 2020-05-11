@@ -1,6 +1,5 @@
-
 <%@page import="java.util.ArrayList"%>
-<%@page import="model.ContactTable"%>
+<%@ page import="com.bookmark.model.Contact" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -56,9 +55,9 @@
           </tr>
       </thead>
       <tbody>
-          <% ArrayList<ContactTable> contactInfos =(ArrayList<ContactTable>) request.getAttribute("contactInfos"); 
+          <% ArrayList<Contact> contactInfos =(ArrayList<Contact>) request.getAttribute("contactList");
           int cnt=1;
-          for(ContactTable cts : contactInfos){
+          for(Contact cts : contactInfos){
           %>
           <tr>
               <td><%= cnt%></td>
@@ -87,7 +86,7 @@
         
         <!-- Modal body -->
         <div class="modal-body">
-            <form action="AddContact" method="POST">
+            <form action="/addContact" method="POST">
             <div class="form-group">
               <label for="name">Name :</label>
               <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" required>

@@ -17,23 +17,27 @@ public class UserPrincipal implements UserDetails {
     private User user;
 
     public UserPrincipal(User user) {
+
         super();
         this.user = user;
+        System.out.println("UserPrincipal constructor visited");
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
+        System.out.println("getAuthorities method visited");
         return Collections.singleton(new SimpleGrantedAuthority("USER"));
     }
 
     @Override
     public String getPassword() {
+        System.out.println("getPassword method visited");
         return user.getPassword();
     }
 
     @Override
     public String getUsername() {
+        System.out.println("getUsername method visited");
         return user.getEmail();
     }
 

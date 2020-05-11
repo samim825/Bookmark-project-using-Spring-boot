@@ -1,6 +1,7 @@
 package com.bookmark.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -25,12 +26,16 @@ import java.util.List;
 @EnableWebSecurity
 public class SpringSecurityConfig  extends WebSecurityConfigurerAdapter{
 
-
+    @Qualifier("myUserDetailsService")
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
+
     @Bean
     public AuthenticationProvider authenticationProvider(){
+        System.out.println("AuthemticationProvider method visited");
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(userDetailsService);
         provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
@@ -39,15 +44,17 @@ public class SpringSecurityConfig  extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
+        System.out.println("Configure method visited");
         http
                 .csrf().disable()
+                .cors().disable()
                 .authorizeRequests().antMatchers("/login","/signUp","*.jpg").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
+                .successHandler(customAuthenticationSuccessHandler)
                 .loginPage("/login").permitAll()
                 .usernameParameter("email").permitAll()
-                .defaultSuccessUrl("/home")
                 .and()
                 .logout().invalidateHttpSession(true)
                 .clearAuthentication(true)
@@ -55,7 +62,7 @@ public class SpringSecurityConfig  extends WebSecurityConfigurerAdapter{
                 .logoutSuccessUrl("/logout-success").permitAll();
 
 
-
+        System.out.println("configure method visited 2");
 
     }
 

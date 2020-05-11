@@ -9,6 +9,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.security.Principal;
+
 /**
  * Created by User on 5/5/2020.
  */
@@ -26,7 +30,17 @@ public class MyUserDetailsService implements UserDetailsService {
         if(user==null) {
             throw new BadCredentialsException("Invalid E-mail or Password !!");
 
-        }
+//        }else{
+//            Principal principal=null;
+//            HttpServletRequest request=null;
+//            User user1 = userDao.findByEmail(principal.getName());
+//
+//            HttpSession session = request.getSession();
+//            session.setAttribute("name",user1.getName());
+//            session.setAttribute("mobile",user1.getMobile());
+//            session.setAttribute("id",user1.getId());
+//            session.setAttribute("email",user1.getEmail());
+       }
 
         return new UserPrincipal(user);
     }

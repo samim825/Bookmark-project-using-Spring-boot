@@ -1,5 +1,5 @@
 <%@page import="java.util.ArrayList"%>
-<%@page import="model.BookmarkTable"%>
+<%@ page import="com.bookmark.model.Bookmark" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,6 +39,8 @@
     <jsp:include page="header.jsp"/>
 <div class="container">
    <br><br>
+    <% String msg = request.getParameter("msg"); %>
+    <h4 style="color: green;text-align: center"><%if(msg!=null) System.out.print(msg);%></h4>
 <button  class="btn btn-md btn-primary float-right" data-toggle="modal" data-target="#myModal">Add new</button><br><br>
   <table class="table table-hover table-striped table-bordered" id="myTable">
       <thead>
@@ -51,9 +53,9 @@
           </tr>
       </thead>
       <tbody>
-          <% ArrayList<BookmarkTable> infos = (ArrayList<BookmarkTable>) request.getAttribute("infos"); 
+          <% ArrayList<Bookmark> infos = (ArrayList<Bookmark>) request.getAttribute("bookmarkList");
           int cnt=1;
-          for(BookmarkTable bt:infos){
+          for(Bookmark bt:infos){
           %>
           <tr>
               <td><%= cnt%></td>
@@ -81,7 +83,7 @@
         
         <!-- Modal body -->
         <div class="modal-body">
-            <form action="Bookmark" method="POST">
+            <form action="/addBookmark" method="POST">
             <div class="form-group">
               <label for="link">Link :</label>
               <input type="text" class="form-control" id="link" placeholder="Enter Link" name="link" required>

@@ -31,7 +31,7 @@ public class Contact {
     private String address;
 
     @NotNull
-    private Integer status;
+    private Integer status=1;
 
     public Integer getStatus() {
         return status;

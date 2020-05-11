@@ -29,12 +29,20 @@ public class User {
     @Column(unique = true)
     private String email;
 
+    private String mobile;
 
     private String image;
 
     @Column(name="user_role")
     private String role;
 
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
 
     public Integer getId() {
         return id;

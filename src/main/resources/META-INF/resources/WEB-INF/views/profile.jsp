@@ -53,10 +53,11 @@
               <a href="" class="btn btn-primary">Update profile</a>
           </div>
 
-          <h6 class="profile-font">${userAge}</h6>
-          <h6 class="profile-font">${userName}</h6>
-          <h6 class="profile-font">${userEmail}</h6>
-          <h6 class="profile-font">${userMobile}</h6>
+
+            <h6 class="profile-font">${user.getId()}</h6>
+            <h6 class="profile-font">${user.getName()}</h6>
+          <h6 class="profile-font">${user.getEmail()}</h6>
+          <h6 class="profile-font">${user.getMobile()}</h6>
           <br><br>
       </div>
   <div class="col-sm-9">

@@ -1,5 +1,7 @@
 package com.bookmark.model;
 
+import org.springframework.boot.context.properties.bind.DefaultValue;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,9 +22,10 @@ public class Bookmark {
     private String details;
     private String comment;
     @NotNull
-    private Integer status;
+    private Integer status=1;
 
     @Column(name="user_id")
+    @NotNull
     private Integer userId;
 
     public Integer getStatus() {
